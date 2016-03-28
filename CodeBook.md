@@ -136,7 +136,7 @@ ndata_all<-cbind(ndata0,xdata)
 #5.From the data set in step 4, creates a second, independent tidy data set
 #with the average of each variable for each activity and each subject.
 ndata<-data.table(ndata)
-        tdata<-ndata[,ndata[,lapply(.SD,mean),by=activity, .SDcols=3:length(colnames(ndata))], by=subject]
+        tdata<-ndata[,lapply(.SD,mean),by=(subject,activity), .SDcols=3:length(colnames(ndata))]
         write.table(tdata,"tidydata.txt", row.name=FALSE) # write table with rezult
 }
 
